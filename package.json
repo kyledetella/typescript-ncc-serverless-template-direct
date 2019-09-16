@@ -1,0 +1,37 @@
+{
+  "name": "typescript-ncc-serverless-template-direct",
+  "version": "1.0.0",
+  "description": "TypeScript + ncc + serverless template (for direct invocation)",
+  "scripts": {
+    "start": "nodemon -e ts --ignore dist --exec 'ncc build src/index.ts -o dist -s'",
+    "clean": "rm -rf dist",
+    "pretest": "npm run fmt && npm run lint",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "prebuild": "npm t",
+    "build": "ncc build src/index.ts -o dist -m -s",
+    "predeploy": "npm run clean && npm run build",
+    "deploy": "NODE_ENV=production npx serverless deploy",
+    "lint": "tslint -c tslint.json './**/*.ts' -t stylish",
+    "fmt": "prettier --write \"src/**/*.{json,ts,yml,md}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.31",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^10.14.16",
+    "@zeit/ncc": "^0.20.4",
+    "aws-sdk": "^2.518.0",
+    "aws-xray-sdk": "^2.3.4",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.2"
+  }
+}
